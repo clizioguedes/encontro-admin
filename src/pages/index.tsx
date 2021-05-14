@@ -1,27 +1,40 @@
-import { GetStaticProps } from "next";
 import { api } from "../services/api";
-import { format, parseISO } from "date-fns";
-import { ptBR } from "date-fns/locale";
-
 import styles from "./home.module.scss";
 import { User } from "../entities/User";
+import { useEffect, useState } from "react";
 
-type Props = {
-  users: User[];
-};
+import { getUsers } from "../services/user";
 
-const handleContactWhatsapp = (userId: string, isContacted: boolean): void => {
-  api.put(`user/${userId}`, {
-    contacted: isContacted,
-  });
-};
+export default function Home() {
+  const [users, setUsers] = useState([] as User[]);
 
-const startWhatsapp = (phone: string) => {
-  const url = `https://api.whatsapp.com/send?phone=${phone}`;
-  return window.open(url);
-};
+  const handleContactWhatsapp = (
+    userId: string,
+    isContacted: boolean
+  ): void => {
+    api
+      .put(`user/${userId}`, {
+        contacted: isContacted,
+      })
+      .then(handleUsers)
+      .catch((err) => console.log("Erro ao atualizar usuário", err));
+  };
 
-export default function Home({ users }: Props) {
+  const handleUsers = () => {
+    getUsers().then((response) => {
+      setUsers(response);
+    });
+  };
+
+  const startWhatsapp = (phone: string) => {
+    const url = `https://api.whatsapp.com/send?phone=${phone}`;
+    return window.open(url);
+  };
+
+  useEffect(() => {
+    handleUsers();
+  }, []);
+
   return (
     <div className={styles.homepage}>
       <section className={styles.latestMetrics}>
@@ -62,7 +75,6 @@ export default function Home({ users }: Props) {
                   <td>{user.phone}</td>
                   <td>
                     <input
-                      readOnly
                       type="checkbox"
                       checked={user.contacted}
                       onChange={(event) => {
@@ -72,15 +84,16 @@ export default function Home({ users }: Props) {
                   </td>
                   <td>{user.createdAt}</td>
                   <td>
-                    <button>Editar</button>
                     <button
                       onClick={() => {
                         startWhatsapp(String("+55" + user.phone));
                       }}
                     >
-                      Whatsapp
+                      <img
+                        src="/images/whatsapp.png"
+                        alt="Botão para contato no Whatsapp"
+                      />
                     </button>
-                    {user.contacted ? <p>Sim</p> : <p>Não</p>}
                   </td>
                 </tr>
               );
@@ -91,32 +104,3 @@ export default function Home({ users }: Props) {
     </div>
   );
 }
-
-export const getStaticProps: GetStaticProps = async () => {
-  const { data } = await api.get("users", {
-    params: {
-      _limit: 12,
-      _sort: "created_at",
-      _order: "desc",
-    },
-  });
-  const users = data.map((user) => ({
-    id: user.id,
-    name: user.name,
-    phone: user.phone,
-    contacted: user.contacted,
-    createdAt: format(parseISO(user.created_at), "d MMM yy hh:mm", {
-      locale: ptBR,
-    }),
-    updatedAt: format(parseISO(user.updated_at), "d MMM yy hh:mm", {
-      locale: ptBR,
-    }),
-  }));
-
-  return {
-    props: {
-      users,
-    },
-    revalidate: 60 * 25,
-  };
-};
