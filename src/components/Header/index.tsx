@@ -9,7 +9,7 @@ export function Header() {
   });
   return (
     <header className={styles.headerContainer}>
-      <img src="/logo.png" alt="" />
+      <img src="/images/logo.png" alt="" />
       <p>Administração</p>
       <span>{currentDate}</span>
     </header>

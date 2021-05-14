@@ -5,6 +5,10 @@ export default class MyDocument extends Document {
     return (
       <Html>
         <Head>
+          <head>
+            <title>Administração Encontro</title>
+          </head>
+          <link rel="icon" href="./images/favicon.jpeg" />
           <link rel="preconnect" href="https://fonts.gstatic.com" />
           <link
             href="https://fonts.googleapis.com/css2?family=Inter&family=Lexend:wght@500;600&display=swap"
