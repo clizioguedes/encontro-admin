@@ -1,12 +1,17 @@
-import { api } from "../services/api";
-import styles from "./home.module.scss";
-import { User } from "../entities/User";
 import { useEffect, useState } from "react";
 
+// Entities
+import { User } from "../entities/User";
+
+// Services
 import { getAllUsers } from "../services/user";
 
+// Components
 import Metrics from "../components/Metrics";
 import Table from "../components/Table";
+
+// Styles
+import styles from "./home.module.scss";
 
 export default function Home() {
   const [users, setUsers] = useState([] as User[]);
@@ -25,7 +30,6 @@ export default function Home() {
     <div className={styles.homepage}>
       <div>
         <Metrics users={users} />
-
         <Table users={users} handleUsers={handleUsers} />
       </div>
     </div>

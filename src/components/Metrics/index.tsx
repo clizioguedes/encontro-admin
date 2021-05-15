@@ -1,8 +1,10 @@
 import React from "react";
-import { User } from "../../entities/User";
-
 import ReactHTMLTableToExcel from "react-html-table-to-excel";
 
+// Entities
+import { User } from "../../entities/User";
+
+// Styles
 import styles from "./styles.module.scss";
 
 type Props = {

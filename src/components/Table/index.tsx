@@ -1,8 +1,11 @@
-import React from "react";
-
-import styles from "./styles.module.scss";
+// Entities
 import { User } from "../../entities/User";
+
+// Services
 import { updateContactWhatsapp } from "../../services/user";
+
+// Styles
+import styles from "./styles.module.scss";
 
 type Props = {
   users: User[];

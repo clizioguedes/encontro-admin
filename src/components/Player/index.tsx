@@ -1,3 +1,4 @@
+// Styles
 import styles from "./styles.module.scss";
 
 export function Player() {
