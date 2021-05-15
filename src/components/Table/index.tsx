@@ -37,6 +37,7 @@ const Table: React.FC<Props> = ({ users, handleUsers }) => {
             <th>Nome</th>
             <th>Whatsapp</th>
             <th>Contatado</th>
+            <th>Origem</th>
             <th>Data</th>
             <th>Ações</th>
           </tr>
@@ -57,6 +58,7 @@ const Table: React.FC<Props> = ({ users, handleUsers }) => {
                     alt="Verifica se a encontro já entrou em contato com o cliente cadastrado"
                   />
                 </td>
+                <td>{user.site ? "Site" : "Cadastro"}</td>
                 <td>{user.createdAt}</td>
                 <td>
                   <button

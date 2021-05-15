@@ -3,6 +3,7 @@ export interface User {
   name: string;
   phone: string;
   contacted: boolean;
+  site: boolean;
   createdAt?: any;
   updatedAt?: any;
 }

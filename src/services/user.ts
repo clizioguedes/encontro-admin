@@ -15,6 +15,7 @@ export const getAllUsers = async () => {
     name: user.name,
     phone: user.phone,
     contacted: user.contacted,
+    site: user.site,
     createdAt: format(parseISO(user.created_at), "d MMM yy hh:mm", {
       locale: ptBR,
     }),
