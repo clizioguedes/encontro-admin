@@ -1,0 +1,52 @@
+.latestMetrics {
+  ul {
+    list-style: none;
+    display: flex;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  li {
+    button {
+      width: 2.5rem;
+      height: 2.5rem;
+      background: var(--white);
+      border: 1px solid var(--gray-100);
+      border-radius: 0.675rem;
+      font-size: 0;
+
+      transition: filter 0.2s;
+
+      img {
+        width: 1.5rem;
+        height: 1.5rem;
+      }
+
+      &:hover {
+        filter: brightness(0.9);
+      }
+    }
+    background: var(--white);
+    border: 1px, solid var(--gray-100);
+    padding: 1rem;
+    border-radius: 1.5rem;
+
+    display: flex;
+    align-items: center;
+    .descriptionMetrics {
+      display: flex;
+      color: var(--gray-800);
+      font-family: Lexend, sans-serif;
+      font-weight: 600;
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+    .infoMetrics {
+      font-size: 2rem;
+      margin: 1rem;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+  }
+}

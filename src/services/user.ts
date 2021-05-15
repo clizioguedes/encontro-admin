@@ -2,7 +2,7 @@ import { api } from "../services/api";
 import { format, parseISO } from "date-fns";
 import { ptBR } from "date-fns/locale";
 
-export const getUsers = async () => {
+export const getAllUsers = async () => {
   const { data } = await api.get("users", {
     params: {
       _limit: 12,
@@ -24,4 +24,13 @@ export const getUsers = async () => {
   }));
 
   return users;
+};
+
+export const updateContactWhatsapp = async (
+  userId: string,
+  isContacted: boolean
+) => {
+  api.put(`user/${userId}`, {
+    contacted: isContacted,
+  });
 };

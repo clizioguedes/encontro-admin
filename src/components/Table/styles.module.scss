@@ -1,0 +1,52 @@
+.buttonsTable {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.allUsers {
+  padding-bottom: 2rem;
+
+  table {
+    width: 100%;
+    th,
+    td {
+      text-align: center;
+      padding: 0.75rem, 1rem;
+      border-bottom: 1px solid var(--gray-100);
+      font: 500 0.75rem Lexend, sans-serif;
+    }
+
+    th {
+      color: var(--gray-800);
+      text-transform: uppercase;
+      text-align: center;
+      font-size: 1rem;
+    }
+
+    td {
+      font-size: 1rem;
+      color: var(--gray-200);
+    }
+
+    button {
+      width: 2.5rem;
+      height: 2.5rem;
+      background: var(--white);
+      border: 1px solid var(--gray-100);
+      border-radius: 0.675rem;
+      font-size: 0;
+
+      transition: filter 0.2s;
+
+      img {
+        width: 1.5rem;
+        height: 1.5rem;
+      }
+
+      &:hover {
+        filter: brightness(0.9);
+      }
+    }
+  }
+}
